@@ -1,0 +1,52 @@
+CREATE TABLE api_clientes.clientes (
+	codigo_cliente BIGINT auto_increment NOT NULL,
+	nome varchar(100) NOT NULL,
+	cpf varchar(11) NOT NULL,
+	sexo varchar(1) NOT NULL,
+	email varchar(100) NOT NULL,
+	CONSTRAINT clientes_PK PRIMARY KEY (codigo_cliente)
+)
+ENGINE=InnoDB
+DEFAULT CHARSET=utf8mb4
+COLLATE=utf8mb4_0900_ai_ci;
+
+
+CREATE TABLE api_clientes.produtos (
+	codigo_produto BIGINT auto_increment NOT NULL,
+	nome varchar(100) NOT NULL,
+	cor varchar(100) NOT NULL,
+	tamanho varchar(100) NULL,
+	valor DOUBLE NOT NULL,
+	CONSTRAINT produtos_PK PRIMARY KEY (codigo_produto)
+)
+ENGINE=InnoDB
+DEFAULT CHARSET=utf8mb4
+COLLATE=utf8mb4_0900_ai_ci;
+
+
+CREATE TABLE api_clientes.pedidos (
+	codigo_pedido BIGINT auto_increment NOT NULL,
+	data_do_pedido DATETIME NOT NULL,
+	observacao varchar(200) NOT NULL,
+	forma_de_pagamento enum('cartao','dinheiro','cheque') NOT NULL,
+	codigo_cliente BIGINT NOT NULL,
+	CONSTRAINT pedidos_PK PRIMARY KEY (codigo_pedido),
+	CONSTRAINT pedidos_FK FOREIGN KEY (codigo_cliente) REFERENCES api_clientes.clientes(codigo_cliente)
+)
+ENGINE=InnoDB
+DEFAULT CHARSET=utf8mb4
+COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE api_clientes.pedido_produtos (
+	codigo_pedido_produto BIGINT auto_increment NOT NULL,
+	codigo_pedido BIGINT NOT NULL,
+	codigo_produto BIGINT NOT NULL,
+	quantidade INTEGER NOT NULL,
+	CONSTRAINT pedido_produtos_PK PRIMARY KEY (codigo_pedido_produto),
+	CONSTRAINT pedido_produtos_FK FOREIGN KEY (codigo_pedido) REFERENCES api_clientes.pedidos(codigo_pedido),
+	CONSTRAINT pedido_produtos_FK_1 FOREIGN KEY (codigo_produto) REFERENCES api_clientes.produtos(codigo_produto)
+)
+ENGINE=InnoDB
+DEFAULT CHARSET=utf8mb4
+COLLATE=utf8mb4_0900_ai_ci;
+
