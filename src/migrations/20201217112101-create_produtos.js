@@ -7,7 +7,8 @@ module.exports = {
 				codigo_produto: {
 					type: Sequelize.BIGINT.UNSIGNED,
 					allowNull: false,
-					primaryKey: true
+					primaryKey: true,
+					autoIncrement: true
 				},
 				nome: {
 					type: Sequelize.STRING(100),

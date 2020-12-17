@@ -7,12 +7,14 @@ class Produto extends Model {
                 type: DataTypes.BIGINT.UNSIGNED,
                 primaryKey: true
             },
-            npme: DataTypes.STRING(100),
+            nome: DataTypes.STRING(100),
             cor: DataTypes.STRING(40),
             tamanho: DataTypes.STRING(40),
             valor: DataTypes.DOUBLE
         }, {
             sequelize,
+            tableName: 'produtos',
+            timestamps: false,
             modelName: 'Produto',
         });
     };
