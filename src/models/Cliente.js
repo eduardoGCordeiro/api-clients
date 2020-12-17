@@ -6,6 +6,7 @@ class Cliente extends Model {
             codigo_cliente: {
                 type: DataTypes.BIGINT.UNSIGNED,
                 primaryKey: true,
+                autoIncrement: true
             },
             nome: DataTypes.STRING(100),
             cpf: DataTypes.STRING(11),

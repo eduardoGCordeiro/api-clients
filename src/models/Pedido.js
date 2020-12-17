@@ -5,7 +5,8 @@ class Pedido extends Model {
         super.init({
             codigo_pedido: {
                 type: DataTypes.BIGINT.UNSIGNED,
-                primaryKey: true
+                primaryKey: true,
+                autoIncrement: true
             },
             codigo_cliente: DataTypes.BIGINT.UNSIGNED,
             data_do_pedido: DataTypes.DATE,

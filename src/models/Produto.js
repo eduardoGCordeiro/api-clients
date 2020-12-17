@@ -5,7 +5,8 @@ class Produto extends Model {
         super.init({
             codigo_produto: {
                 type: DataTypes.BIGINT.UNSIGNED,
-                primaryKey: true
+                primaryKey: true,
+                autoIncrement: true
             },
             nome: DataTypes.STRING(100),
             cor: DataTypes.STRING(40),
