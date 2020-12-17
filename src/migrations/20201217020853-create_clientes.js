@@ -9,10 +9,22 @@ module.exports = {
 					allowNull: false,
 					primaryKey: true
 				},
-				nome: Sequelize.STRING(100),
-				cpf: Sequelize.STRING(11),
-				sexo: Sequelize.STRING(1),
-				email: Sequelize.STRING(100)
+				nome: {
+					type: Sequelize.STRING(100),
+					allowNull: false
+				},
+				cpf: {
+					type: Sequelize.STRING(11),
+					allowNull: false
+				},
+				sexo: {
+					type: Sequelize.STRING(1),
+					allowNull: false
+				},
+				email: {
+					type: Sequelize.STRING(100),
+					allowNull: false
+				}
 			});
 	},
 
