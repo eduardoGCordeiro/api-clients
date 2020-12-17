@@ -5,7 +5,7 @@ module.exports = {
 		await queryInterface.createTable('produtos',
 			{
 				codigo_produto: {
-					type: Sequelize.BIGINT,
+					type: Sequelize.BIGINT.UNSIGNED,
 					allowNull: false,
 					primaryKey: true
 				},
