@@ -1,11 +1,5 @@
 require('dotenv').config({ path: '../.env' });
 
-//Cliente = require('./models/cliente');
-//Produto = require('./models/produto');
-//Pedido = require('./models/pedido');
-//PedidoProduto = require('./models/pedido_produto');
-
-const database = require('./models');
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
