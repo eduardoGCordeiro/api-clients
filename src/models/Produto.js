@@ -14,9 +14,17 @@ class Produto extends Model {
             valor: DataTypes.DOUBLE
         }, {
             sequelize,
+            timestamps: true,
+            paranoid: true,
             tableName: 'produtos',
-            timestamps: false,
-            modelName: 'Produto',
+            createdAt: 'created_at',
+            updatedAt: 'updated_at',
+            deletedAt: 'deleted_at',
+            defaultScope: {
+                attributes: {
+                    exclude: ['created_at', 'updated_at', 'deleted_at']
+                }
+            }
         });
     };
 

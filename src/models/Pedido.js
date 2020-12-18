@@ -14,9 +14,17 @@ class Pedido extends Model {
             forma_de_pagamento: DataTypes.ENUM('dinheiro', 'cartao', 'cheque')
         }, {
             sequelize,
+            timestamps: true,
+            paranoid: true,
             tableName: 'pedidos',
-            timestamps: false,
-            modelName: 'Pedido'
+            createdAt: 'created_at',
+            updatedAt: 'updated_at',
+            deletedAt: 'deleted_at',
+            defaultScope: {
+                attributes: {
+                    exclude: ['created_at', 'updated_at', 'deleted_at']
+                }
+            }
         });
     };
 

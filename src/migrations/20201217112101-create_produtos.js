@@ -25,6 +25,15 @@ module.exports = {
 				valor: {
 					type: Sequelize.DOUBLE,
 					allowNull: false
+				},
+				created_at: {
+					type: Sequelize.DATE
+				},
+				updated_at: {
+					type: Sequelize.DATE
+				},
+				deleted_at: {
+					type: Sequelize.DATE
 				}
 			});
 	},

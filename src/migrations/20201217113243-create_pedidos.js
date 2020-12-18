@@ -29,6 +29,15 @@ module.exports = {
                 forma_de_pagamento: {
                     type: Sequelize.ENUM('dinheiro', 'cartao', 'cheque'),
                     allowNull: false
+                },
+                created_at: {
+                    type: Sequelize.DATE
+                },
+                updated_at: {
+                    type: Sequelize.DATE
+                },
+                deleted_at: {
+                    type: Sequelize.DATE
                 }
             });
     },

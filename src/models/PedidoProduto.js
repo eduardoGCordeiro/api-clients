@@ -13,9 +13,17 @@ class PedidoProduto extends Model {
             quantidade: DataTypes.INTEGER.UNSIGNED
         }, {
             sequelize,
+            timestamps: true,
+            paranoid: true,
             tableName: 'pedido_produtos',
-            timestamps: false,
-            modelName: 'PedidoProduto'
+            createdAt: 'created_at',
+            updatedAt: 'updated_at',
+            deletedAt: 'deleted_at',
+            defaultScope: {
+                attributes: {
+                    exclude: ['created_at', 'updated_at', 'deleted_at']
+                }
+            }
         });
     };
 };

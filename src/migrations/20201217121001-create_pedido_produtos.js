@@ -30,6 +30,15 @@ module.exports = {
                     type: Sequelize.INTEGER.UNSIGNED,
                     allowNull: false
                 },
+                created_at: {
+                    type: Sequelize.DATE
+                },
+                updated_at: {
+                    type: Sequelize.DATE
+                },
+                deleted_at: {
+                    type: Sequelize.DATE
+                }
             });
     },
 
