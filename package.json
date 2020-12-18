@@ -4,24 +4,30 @@
   "description": "Api para manipulação de pedidos.",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
+    "test": "mocha -r dotenv/config test --exit",
+    "start": "node -r dotenv/config src/server.js",
     "dev": "nodemon -r dotenv/config ./src/server.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.0",
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "chai-subset": "^1.6.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "joi": "^17.3.0",
+    "mocha": "^8.2.1",
     "mysql": "^2.18.1",
     "mysql2": "^2.2.5",
     "nodemailer": "^6.4.17",
     "nodemailer-mailgun-transport": "^2.0.2",
     "nodemon": "^2.0.6",
     "pdfkit": "^0.11.0",
-    "sequelize": "^6.3.5"
+    "sequelize": "^6.3.5",
+    "should": "^13.2.3"
   },
   "devDependencies": {
     "sequelize-cli": "^6.2.0"

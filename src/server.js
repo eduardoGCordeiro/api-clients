@@ -36,3 +36,5 @@ app.use((error, req, res) => {
 
 
 app.listen(process.env.APP_PORT, () => console.log('servidor iniciado na porta: ' + process.env.APP_PORT + '!'));
+
+module.exports = app;

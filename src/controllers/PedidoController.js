@@ -99,7 +99,7 @@ module.exports = {
         //Verifica se existe um pedido.
         if (pedido) {
             const informacoes_pedido = await informacoesPedido(codigo_pedido);
-            const email = await sendEmail(pedido.cliente.dataValues.email, 'Detalhes do pedido', JSON.stringify(informacoes_pedido));
+            const email = await sendEmail(informacoes_pedido.cliente.dataValues.email, 'Detalhes do pedido', JSON.stringify(informacoes_pedido));
 
             if (!email) {
                 return res.status(200).json({ message: 'Email enviado com sucesso!' });
