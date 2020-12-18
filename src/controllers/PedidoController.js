@@ -1,7 +1,9 @@
+const FormData = require('form-data');
 const Pedido = require('../models/Pedido');
 const Cliente = require('../models/Cliente');
 const informacoesPedido = require('../utils/InformacoesPedido');
 const sendEmail = require('../utils/SendEmail');
+const generateReport = require('../utils/Report');
 
 module.exports = {
     async listar(req, res) {
@@ -65,9 +67,28 @@ module.exports = {
     async report(req, res) {
         const { codigo_pedido } = req.params;
 
-        const pedido = await informacoesPedido(codigo_pedido);
+        const pedido = await Pedido.findByPk(codigo_pedido);
 
-        return res.json(pedido);
+        //Verifica se existe um pedido.
+        if (pedido) {
+            const informacoes_pedido = await informacoesPedido(codigo_pedido);
+            const report = await generateReport('Detalhes do pedido', JSON.stringify(informacoes_pedido));
+
+            if (report) {
+                const form = new FormData();
+                form.append('report', report.path);
+                res.setHeader('Content-Type', 'multipart/form-data');
+                res.status(200).send(form);
+            }
+
+            if (!report) {
+                return res.status(500).json({ message: 'Erro ao gerar o relatório!' });
+            }
+        }
+
+        if (!pedido) {
+            return res.status(400).json({ message: 'Pedido não encontrado!' });
+        }
     },
 
     async sendEmail(req, res) {
