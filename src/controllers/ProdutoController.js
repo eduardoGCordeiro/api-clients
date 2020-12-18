@@ -14,22 +14,18 @@ module.exports = {
     },
 
     async salvar(req, res) {
-        const { nome, cor, tamanho, valor } = req.body;
+        const { ...data } = req.body;
 
-        const produto = await Produto.create({
-            nome, cor, tamanho, valor
-        });
+        const produto = await Produto.create(data);
 
         return res.json(produto);
     },
 
     async atualizar(req, res) {
         const { codigo_produto } = req.params;
-        const { nome, cor, tamanho, valor } = req.body;
+        const { ...data } = req.body;
 
-        const produto = await Produto.update({
-            nome, cor, tamanho, valor
-        }, {
+        const produto = await Produto.update(data, {
             where: {
                 codigo_produto: codigo_produto
             }

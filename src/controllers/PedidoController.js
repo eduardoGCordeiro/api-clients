@@ -1,5 +1,6 @@
 const Pedido = require('../models/Pedido');
 const Cliente = require('../models/Cliente');
+const Produto = require('../models/Produto');
 
 module.exports = {
     async listar(req, res) {
@@ -16,38 +17,30 @@ module.exports = {
     },
 
     async salvar(req, res) {
-        const { data_do_pedido, forma_de_pagamento, observacao, codigo_cliente } = req.body;
+        const { produtos, ...data } = req.body;
 
         //Verifica se o cliente existe.
-        const cliente = await Cliente.findByPk(codigo_cliente);
+        const cliente = await Cliente.findByPk(data.codigo_cliente);
 
         if (!cliente) {
             res.status(400).json({ error: 'Cliente não encontrado' });
         }
 
         //Caso o cliente exista ele cadastra o pedido.
-        const pedido = await Pedido.create({
-            data_do_pedido, forma_de_pagamento, observacao, codigo_cliente
-        });
+        const pedido = await Pedido.create(data);
+
+        if (produtos && produtos.length > 0) {
+            produtos.map(produto => pedido.addProduto(produto.codigo_produto, { through: { quantidade: produto.quantidade } }))
+        }
 
         return res.json(pedido);
     },
 
     async atualizar(req, res) {
         const { codigo_pedido } = req.params;
-        const { data_do_pedido, forma_de_pagamento, observacao, codigo_cliente } = req.body;
+        const { ...data } = req.body;
 
-        //Verifica se o cliente existe.
-        const cliente = await Cliente.findByPk(codigo_cliente);
-
-        if (!cliente) {
-            res.status(400).json({ error: 'Cliente não encontrado' });
-        }
-
-        //Caso o cliente exista ele cadastra o pedido.
-        const pedido = await Pedido.update({
-            data_do_pedido, forma_de_pagamento, observacao, codigo_cliente
-        }, {
+        const pedido = await Pedido.update(data, {
             where: {
                 codigo_pedido: codigo_pedido
             }

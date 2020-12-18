@@ -14,22 +14,18 @@ module.exports = {
     },
 
     async salvar(req, res) {
-        const { nome, sexo, cpf, email } = req.body;
+        const { ...data } = req.body;
 
-        const cliente = await Cliente.create({
-            nome, sexo, cpf, email
-        });
+        const cliente = await Cliente.create(data);
 
         return res.json(cliente);
     },
 
     async atualizar(req, res) {
         const { codigo_cliente } = req.params;
-        const { nome, sexo, cpf, email } = req.body;
+        const { ...data } = req.body;
 
-        const cliente = await Cliente.update({
-            nome, sexo, cpf, email
-        }, {
+        const cliente = await Cliente.update(data, {
             where: {
                 codigo_cliente: codigo_cliente
             }
