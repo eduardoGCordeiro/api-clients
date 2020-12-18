@@ -7,7 +7,8 @@ module.exports = {
                 codigo_pedido_produto: {
                     type: Sequelize.BIGINT.UNSIGNED,
                     allowNull: false,
-                    primaryKey: true
+                    primaryKey: true,
+                    autoIncrement: true
                 },
                 codigo_pedido: {
                     type: Sequelize.BIGINT.UNSIGNED,

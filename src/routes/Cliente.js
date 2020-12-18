@@ -1,5 +1,5 @@
 const express = require('express');
-const ClienteController = require('../../controllers/ClienteController');
+const ClienteController = require('../controllers/ClienteController');
 const routes = express.Router();
 
 routes.get('/clientes', ClienteController.listar);

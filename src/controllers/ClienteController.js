@@ -17,10 +17,7 @@ module.exports = {
         const { nome, sexo, cpf, email } = req.body;
 
         const cliente = await Cliente.create({
-            nome,
-            sexo,
-            cpf,
-            email
+            nome, sexo, cpf, email
         });
 
         return res.json(cliente);
@@ -31,10 +28,7 @@ module.exports = {
         const { nome, sexo, cpf, email } = req.body;
 
         const cliente = await Cliente.update({
-            nome: nome,
-            sexo: sexo,
-            cpf: cpf,
-            email: email
+            nome, sexo, cpf, email
         }, {
             where: {
                 codigo_cliente: codigo_cliente

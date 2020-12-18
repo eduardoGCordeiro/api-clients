@@ -15,7 +15,7 @@ class PedidoProduto extends Model {
             sequelize,
             tableName: 'pedido_produtos',
             timestamps: false,
-            timestamps: false
+            modelName: 'PedidoProduto'
         });
     };
 };

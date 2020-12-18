@@ -14,7 +14,19 @@ class Pedido extends Model {
             forma_de_pagamento: DataTypes.ENUM('dinheiro', 'cartao', 'cheque')
         }, {
             sequelize,
-            modelName: 'Pedido',
+            tableName: 'pedidos',
+            timestamps: false,
+            modelName: 'Pedido'
+        });
+    };
+
+    static associate(models) {
+        this.belongsTo(models.Cliente, { foreignKey: 'codigo_cliente', sourceKey: 'codigo_cliente', as: 'cliente' });
+        this.belongsToMany(models.Produto, {
+            foreignKey: 'codigo_pedido',
+            sourceKey: 'codigo_pedido',
+            as: 'produtos',
+            through: models.PedidoProduto
         });
     };
 };

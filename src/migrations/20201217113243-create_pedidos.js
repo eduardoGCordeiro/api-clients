@@ -7,7 +7,8 @@ module.exports = {
                 codigo_pedido: {
                     type: Sequelize.BIGINT.UNSIGNED,
                     allowNull: false,
-                    primaryKey: true
+                    primaryKey: true,
+                    autoIncrement: true
                 },
                 codigo_cliente: {
                     type: Sequelize.BIGINT.UNSIGNED,

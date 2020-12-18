@@ -17,10 +17,7 @@ module.exports = {
         const { nome, cor, tamanho, valor } = req.body;
 
         const produto = await Produto.create({
-            nome,
-            cor,
-            tamanho,
-            valor
+            nome, cor, tamanho, valor
         });
 
         return res.json(produto);
@@ -31,10 +28,7 @@ module.exports = {
         const { nome, cor, tamanho, valor } = req.body;
 
         const produto = await Produto.update({
-            nome: nome,
-            cor: cor,
-            tamanho: tamanho,
-            valor: valor
+            nome, cor, tamanho, valor
         }, {
             where: {
                 codigo_produto: codigo_produto
